@@ -6,9 +6,9 @@
 export default {
   props: ['msg'],
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 
 <style scoped lang='styl'>

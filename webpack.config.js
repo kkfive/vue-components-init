@@ -4,23 +4,23 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 module.exports = {
   entry: {
-    './lib/vue/vue-components': './src/components/main.js'
+    './lib/vue/vue-components': './src/components/main.js',
   },
   output: {
     path: path.resolve(__dirname, './js'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {}
+        options: {},
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: (file) => /node_modules/.test(file) && !/\.vue\.js/.test(file)
+        exclude: (file) => /node_modules/.test(file) && !/\.vue\.js/.test(file),
       },
       {
         test: /\.css$/,
@@ -28,10 +28,10 @@ module.exports = {
           'vue-style-loader',
           {
             loader: 'css-loader',
-            options: { importLoaders: 1 }
+            options: { importLoaders: 1 },
           },
-          'postcss-loader'
-        ]
+          'postcss-loader',
+        ],
       },
       {
         test: /\.sass$/,
@@ -39,7 +39,7 @@ module.exports = {
           'vue-style-loader',
           {
             loader: 'css-loader',
-            options: { importLoaders: 1 }
+            options: { importLoaders: 1 },
           },
           'postcss-loader',
           {
@@ -48,11 +48,11 @@ module.exports = {
               indentedSyntax: true,
               // sass-loader version >= 8
               sassOptions: {
-                indentedSyntax: true
-              }
-            }
-          }
-        ]
+                indentedSyntax: true,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/,
@@ -60,7 +60,7 @@ module.exports = {
           'vue-style-loader',
           {
             loader: 'css-loader',
-            options: { importLoaders: 1 }
+            options: { importLoaders: 1 },
           },
           'postcss-loader',
           {
@@ -69,10 +69,10 @@ module.exports = {
               // 你也可以从一个文件读取，例如 `variables.scss`
               // 如果 sass-loader 版本 = 8，这里使用 `prependData` 字段
               // 如果 sass-loader 版本 < 8，这里使用 `data` 字段
-              additionalData: `$color: red;`
-            }
-          }
-        ]
+              additionalData: `$color: red;`,
+            },
+          },
+        ],
       },
       {
         test: /\.styl(us)?$/,
@@ -80,18 +80,18 @@ module.exports = {
           'vue-style-loader',
           {
             loader: 'css-loader',
-            options: { importLoaders: 1 }
+            options: { importLoaders: 1 },
           },
           'postcss-loader',
-          'stylus-loader'
-        ]
-      }
-    ]
+          'stylus-loader',
+        ],
+      },
+    ],
   },
   performance: {
-    hints: false
+    hints: false,
   },
-  devtool: 'eval-source-map'
+  devtool: 'eval-source-map',
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -100,24 +100,24 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
-      }
+        NODE_ENV: '"production"',
+      },
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
         output: {
-          comments: false
+          comments: false,
         },
         compress: {
           //   warnings: false,
           drop_debugger: true,
-          drop_console: true
-        }
-      }
+          drop_console: true,
+        },
+      },
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true
+      minimize: true,
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
   ])
 }
