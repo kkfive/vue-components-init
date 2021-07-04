@@ -1,14 +1,18 @@
-<!-- 头部组件 -->
 <template>
-  <div class="test">page</div>
+  <div class="example">{{ msg }}</div>
 </template>
 
+<script>
+export default {
+  props: ['msg'],
+  data() {
+    return {};
+  }
+};
+</script>
+
 <style>
-.test {
+.example {
   color: red;
 }
 </style>
-
-<script>
-console.log(123);
-</script>

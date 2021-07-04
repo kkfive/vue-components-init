@@ -6,10 +6,9 @@ import head from '../components/head/head.vue'
  */
 import filterInit from '../util/filter'
 
-
-filterInit(Vue);
+filterInit(Vue)
 
 Vue.component('xk-head', head)
 
 Vue.config.devtools = true
-window.Vue = Vue;
+window.Vue = Vue
