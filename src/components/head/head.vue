@@ -4,6 +4,7 @@
     {{ msg }}
 
     <img src="./image/f778738c-e4f8-4870-b634-56703b4acafe.gif" />
+    <el-button>哈哈哈</el-button>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 // 注释
 console.log(1)
 export default {
+  name: 'xk-head',
   props: ['msg'],
   data() {
     return {}
