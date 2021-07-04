@@ -1,123 +1,54 @@
 var path = require('path')
-var webpack = require('webpack')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 const { VueLoaderPlugin } = require('vue-loader')
+const getEntry = require('./webpack/getEntry')
+const getLoader = require('./webpack/loader/index')
+const TerserPlugin = require('terser-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
-  entry: {
-    './lib/vue/vue-components': './src/components/main.js',
-  },
+  entry: getEntry('./src/components/'),
   output: {
-    path: path.resolve(__dirname, './js'),
-    filename: '[name].js',
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].js'
   },
   module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {},
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: (file) => /node_modules/.test(file) && !/\.vue\.js/.test(file),
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          {
-            loader: 'css-loader',
-            options: { importLoaders: 1 },
-          },
-          'postcss-loader',
-        ],
-      },
-      {
-        test: /\.sass$/,
-        use: [
-          'vue-style-loader',
-          {
-            loader: 'css-loader',
-            options: { importLoaders: 1 },
-          },
-          'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              indentedSyntax: true,
-              // sass-loader version >= 8
-              sassOptions: {
-                indentedSyntax: true,
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'vue-style-loader',
-          {
-            loader: 'css-loader',
-            options: { importLoaders: 1 },
-          },
-          'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              // 你也可以从一个文件读取，例如 `variables.scss`
-              // 如果 sass-loader 版本 = 8，这里使用 `prependData` 字段
-              // 如果 sass-loader 版本 < 8，这里使用 `data` 字段
-              additionalData: `$color: red;`,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.styl(us)?$/,
-        use: [
-          'vue-style-loader',
-          {
-            loader: 'css-loader',
-            options: { importLoaders: 1 },
-          },
-          'postcss-loader',
-          'stylus-loader',
-        ],
-      },
-    ],
+    rules: getLoader
   },
   performance: {
-    hints: false,
+    hints: false
   },
-  devtool: 'eval-source-map',
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = 'source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-      },
-    }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        output: {
-          comments: false,
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        terserOptions: {
+          ecma: 5,
+          parse: {},
+          compress: {
+            drop_console: true, //移除所有console相关代码；
+            drop_debugger: true, //移除自动断点功能；
+            pure_funcs: ['console.log', 'console.error'] //配置移除指定的指令，如console.log,alert等
+          },
+          mangle: true, // Note `mangle.properties` is `false` by default.
+          module: false,
+          // Deprecated
+          output: null,
+          format: {
+            comments: false
+          },
+          toplevel: false,
+          nameCache: null,
+          ie8: false,
+          keep_classnames: undefined,
+          keep_fnames: false,
+          safari10: false
         },
-        compress: {
-          //   warnings: false,
-          drop_debugger: true,
-          drop_console: true,
-        },
-      },
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-    }),
-    new VueLoaderPlugin(),
-  ])
+        extractComments: false
+      })
+    ]
+  },
+  plugins: [new VueLoaderPlugin(), new CleanWebpackPlugin()],
+  devtool: process.env.NODE_ENV === 'development' ? 'eval-source-map' : false,
+  mode: process.env.NODE_ENV
 }

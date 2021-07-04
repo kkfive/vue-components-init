@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack server --open --hot --content-base ./",
-    "build": "cross-env NODE_ENV=production webpack --progress"
+    "build": "cross-env NODE_ENV=production webpack --progress",
+    "test": "cross-env NODE_ENV=development webpack --progress"
   },
   "dependencies": {
     "element-ui": "^2.15.3",
@@ -35,6 +36,7 @@
     "@vue/compiler-sfc": "^3.1.4",
     "babel-loader": "8.2.2",
     "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
@@ -46,9 +48,9 @@
     "sass-loader": "^12.1.0",
     "stylus": "^0.54.8",
     "stylus-loader": "^6.1.0",
+    "terser-webpack-plugin": "^5.1.4",
     "ts-loader": "^9.2.3",
     "typescript": "^4.3.5",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.1.1",
     "vue-loader": "15.9.7",
     "vue-resource": "^1.5.3",

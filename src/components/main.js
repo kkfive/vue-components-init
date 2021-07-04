@@ -10,5 +10,5 @@ filterInit(Vue)
 
 Vue.component('xk-head', head)
 
-Vue.config.devtools = true
+Vue.config.devtools = process.env.NODE_ENV === 'production' ? false : true
 window.Vue = Vue

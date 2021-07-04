@@ -5,7 +5,15 @@
       {
         "modules": false,
         "targets": {
-          "chrome": "60"
+          "chrome": "60",
+          "firefox": "60",
+          "ie": "9",
+          "safari": "10",
+          "edge": "17"
+        },
+        "useBuiltIns": "usage",
+        "corejs": {
+          "version": 3
         }
       }
     ]
