@@ -11,8 +11,6 @@ export default {
 };
 </script>
 
-<style>
-.example {
-  color: red;
-}
+<style scoped lang='styl'>
+@import './head.styl';
 </style>
