@@ -26,9 +26,9 @@ module.exports = {
           ecma: 5,
           parse: {},
           compress: {
-            drop_console: true, //移除所有console相关代码；
-            drop_debugger: true, //移除自动断点功能；
-            pure_funcs: ['console.log', 'console.error'] //配置移除指定的指令，如console.log,alert等
+            // drop_console: false, //移除所有console相关代码；
+            // drop_debugger: true, //移除自动断点功能；
+            // pure_funcs: ['console.log', 'console.error'] //配置移除指定的指令，如console.log,alert等
           },
           mangle: true, // Note `mangle.properties` is `false` by default.
           module: false,

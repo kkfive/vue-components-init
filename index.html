@@ -2,24 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
   </head>
   <body>
     <div id="page">
-      <xk-head :msg="msg">2213</xk-head>
+      <!-- <xk-head msg="12334edsed">2213</xk-head> -->
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.22/dist/vue.runtime.global.prod.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@3.2.22/dist/vue.global.prod.js"></script> -->
     <script src="./dist/main.js"></script>
     <script>
-      var app = new Vue({
-        el: '#page',
-        data: {
-          msg: 'Hello Vue!123'
-        }
-      })
+      // window.vueApp.mount('#page')
     </script>
   </body>
 </html>
