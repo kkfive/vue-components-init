@@ -2,9 +2,11 @@
   <!-- 安装 -->
   <div class="example">
     {{ msg }}
-
-    <img src="./image/f778738c-e4f8-4870-b634-56703b4acafe.gif" />
-    <el-button>哈哈哈</el-button>
+    <div>{{ myData }}</div>
+    <!-- <img src="./image/f778738c-e4f8-4870-b634-56703b4acafe.gif" /> -->
+    <div>
+      <el-button @click="change">哈哈哈</el-button>
+    </div>
   </div>
 </template>
 
@@ -14,8 +16,16 @@ console.log(1)
 export default {
   name: 'xk-head',
   props: ['msg'],
-  data() {
-    return {}
+  data () {
+    return {
+      myData: 'hhhhh'
+    }
+  },
+  methods: {
+    change () {
+      this.myData = '西欧i和手机壳'
+      console.info('输出了！')
+    }
   }
 }
 </script>
