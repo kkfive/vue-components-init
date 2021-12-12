@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ wrapper: true, x: props.scrollX }" ref="wrapper">
+  <div ref="wrapper" :class="{ wrapper: true, x: props.scrollX }">
     <div class="content">
       <slot></slot>
     </div>
@@ -88,7 +88,6 @@ const props = defineProps({
 const wrapper = ref(null)
 
 onMounted(() => {
-
   bscroll = new BScroll(wrapper.value, {
     scrollX: props.scrollX,
     probeType: props.probeType,

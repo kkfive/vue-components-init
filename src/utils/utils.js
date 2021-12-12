@@ -6,7 +6,7 @@
 export const getCookieByName = (name) => {
   const cookie = document.cookie
   const cookieArr = cookie.split(';')
-  const token = cookieArr.find(item => item.indexOf(name) !== -1)
+  const token = cookieArr.find((item) => item.indexOf(name) !== -1)
   if (token) {
     return token.split('=')[1]
   }
@@ -32,7 +32,6 @@ export const getCookieDeliveryType = () => {
 }
 
 export const formatPrice = (num, ext) => {
-
   let i
   if (ext < 0) {
     return num
@@ -76,4 +75,3 @@ export const formatPrice = (num, ext) => {
   const _fltTwo = _arrTwo[1]
   return _intTwo + '.' + _fltTwo
 }
-

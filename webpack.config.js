@@ -3,6 +3,7 @@ var path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptiomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const getEntry = require('./webpack/getEntry')
 const getLoader = require('./webpack/loader/index')
 const TerserPlugin = require('terser-webpack-plugin')
@@ -62,6 +63,10 @@ module.exports = {
     new OptiomizeCssAssetsWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name]/app.css' // 对输出的文件进行重命名,默认为main.css
+    }),
+    new ESLintPlugin({
+      extensions: ['js', 'ts', 'vue'],
+      formatter: require('eslint-formatter-pretty')
     })
   ],
   devtool: process.env.NODE_ENV === 'development' ? 'eval-source-map' : false,

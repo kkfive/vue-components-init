@@ -32,5 +32,6 @@ setTimeout(() => {
 
 <style scoped>
 /* 哈哈哈 */
+
 /* @import './head.styl'; */
 </style>

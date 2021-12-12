@@ -11,10 +11,9 @@ setTimeout(() => {
 
 <template>
   <div>
-    <xk-head :msg="msg"></xk-head>
+    <xk-head :msg="msg" />
     <div>哈哈哈哈</div>
   </div>
 </template>
 
-<style >
-</style>
+<style></style>

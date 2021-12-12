@@ -39,6 +39,6 @@
     "src/**/*.vue",
     "types/**/*.d.ts",
     "types/**/*.ts"
-  ],
+, "src/entry/cart-list.js"  ],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

@@ -16,4 +16,4 @@ app.directive('link', (el, binding) => {
   })
 })
 
-window.VueApp = app
+window['VueApp'] = app
