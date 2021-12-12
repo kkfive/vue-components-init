@@ -1,7 +1,8 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const css = {
   test: /\.css$/,
   use: [
-    'vue-style-loader',
+    MiniCssExtractPlugin.loader,
     {
       loader: 'css-loader',
       options: { importLoaders: 1 }

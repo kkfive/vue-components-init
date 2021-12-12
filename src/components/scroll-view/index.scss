@@ -1,0 +1,15 @@
+.wrapper {
+  overflow: hidden;
+
+  .content {
+    display: block;
+  }
+  // 开启横向滚动
+  &.x {
+    white-space: nowrap;
+
+    .content {
+      display: inline-block;
+    }
+  }
+}

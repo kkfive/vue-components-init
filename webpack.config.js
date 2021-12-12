@@ -1,19 +1,23 @@
 var path = require('path')
 
 const { VueLoaderPlugin } = require('vue-loader')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptiomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const getEntry = require('./webpack/getEntry')
 const getLoader = require('./webpack/loader/index')
 const TerserPlugin = require('terser-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
 module.exports = {
-  entry: getEntry('./src/components/'),
+  entry: getEntry('./src/entry/'),
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].js'
+    filename: '[name]/app.js',
+    clean: true
   },
   module: {
     rules: getLoader
   },
+
   performance: {
     hints: false
   },
@@ -48,7 +52,18 @@ module.exports = {
       })
     ]
   },
-  plugins: [new VueLoaderPlugin(), new CleanWebpackPlugin()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    }
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+    new OptiomizeCssAssetsWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name]/app.css' // 对输出的文件进行重命名,默认为main.css
+    })
+  ],
   devtool: process.env.NODE_ENV === 'development' ? 'eval-source-map' : false,
   mode: process.env.NODE_ENV
 }

@@ -1,7 +1,7 @@
 <template>
   <!-- 安装 -->
   <div class="example">
-    <div>{{ props.msg }}</div>
+    <div>当前props:{{ props.msg }}</div>
     <div>{{ test }}</div>
 
     <br />
@@ -22,15 +22,15 @@ const test = ref('这是测试数据')
 test.value = '修改test的值'
 const randNum = ref(0)
 const changeNum = () => {
-  console.log(randNum.value);
   randNum.value = Math.random()
+  console.log(randNum.value)
 }
 setTimeout(() => {
   randNum.value = 12
 }, 1000)
 </script>
 
-<style scoped lang='styl'>
+<style scoped>
 /* 哈哈哈 */
-@import './head.styl';
+/* @import './head.styl'; */
 </style>
