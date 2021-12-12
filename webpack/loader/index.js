@@ -5,6 +5,7 @@ module.exports = [
   require('./scss'),
   require('./css'),
   require('./javascript'),
+  require('./typescript'),
   require('./image'),
   require('./font'),
   require('./font'),
